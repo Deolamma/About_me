@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:task_2/Widget/logodisplayWidget.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../constants.dart';
 import '../Widget/userInputAndDisplayWidget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -15,13 +17,40 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile Me'),
+        actions: [
+          AspectRatio(
+            aspectRatio: 5 / 3,
+            child: Image.asset('Asset/images/zuriI4G.png'),
+          ),
+          AspectRatio(
+            aspectRatio: 2 / 3,
+            child: Image.asset('Asset/images/HNG.png'),
+          )
+        ],
       ),
       resizeToAvoidBottomInset: false,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: Stack(
         children: [
           InputDisplayWidget(),
-          LogoDisplay(),
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: InkWell(
+              onTap: () async {
+                if (await canLaunch(zuriLink)) {
+                  await launch(zuriLink);
+                } else {
+                  throw 'can\'t launch $zuriLink';
+                }
+              },
+              child: Text(
+                zuriLink,
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.blue),
+              ),
+            ),
+          ),
         ],
       ),
     );

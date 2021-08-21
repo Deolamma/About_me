@@ -16,11 +16,11 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
   var _age;
   var _occupation = '';
 
-  var nameController = TextEditingController();
-  var sexController = TextEditingController();
-  var emailController = TextEditingController();
-  var ageController = TextEditingController();
-  var occupationController = TextEditingController();
+  var _nameController = TextEditingController();
+  var _sexController = TextEditingController();
+  var _emailController = TextEditingController();
+  var _ageController = TextEditingController();
+  var _occupationController = TextEditingController();
 
   var _emailFocusNode = FocusNode();
   var _sexFocusNode = FocusNode();
@@ -28,33 +28,12 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
   var _occupationFocusNode = FocusNode();
 
   @override
-  // void initState() {
-  //   nameController.addListener(() {
-  //     setState(() {});
-  //   });
-  //   sexController.addListener(() {
-  //     setState(() {});
-  //   });
-  //   ageController.addListener(() {
-  //     setState(() {});
-  //   });
-  //   occupationController.addListener(() {
-  //     setState(() {});
-  //   });
-  //   emailController.addListener(() {
-  //     setState(() {});
-  //   });
-
-  //   super.initState();
-  // }
-
-  @override
   void dispose() {
-    nameController.dispose();
-    sexController.dispose();
-    emailController.dispose();
-    ageController.dispose();
-    occupationController.dispose();
+    _nameController.dispose();
+    _sexController.dispose();
+    _emailController.dispose();
+    _ageController.dispose();
+    _occupationController.dispose();
     _emailFocusNode.dispose();
     _sexFocusNode.dispose();
     _ageFocusNode.dispose();
@@ -63,12 +42,14 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
     super.dispose();
   }
 
+  
+
   void _submitInput() {
-    _name = nameController.text;
-    _sex = sexController.text;
-    _age = int.parse(ageController.text);
-    _occupation = occupationController.text;
-    _email = emailController.text;
+    _name = _nameController.text;
+    _sex = _sexController.text;
+    _age = int.parse(_ageController.text);
+    _occupation = _occupationController.text;
+    _email = _emailController.text;
     setState(() {});
   }
 
@@ -78,13 +59,13 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
     var currentFocus = FocusScope.of(context);
     return Container(
       width: size.width,
-      height: size.height * 0.60,
+      height: size.height,
       padding: EdgeInsets.all(kDefaultPadding),
       child: SingleChildScrollView(
         child: Column(
           children: [
             TextField(
-              controller: nameController,
+              controller: _nameController,
               textInputAction: TextInputAction.next,
               onSubmitted: (_) {
                 currentFocus.requestFocus(_occupationFocusNode);
@@ -97,7 +78,7 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               ),
             ),
             TextField(
-              controller: occupationController,
+              controller: _occupationController,
               textInputAction: TextInputAction.next,
               focusNode: _occupationFocusNode,
               onSubmitted: (_) {
@@ -111,7 +92,7 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               ),
             ),
             TextField(
-              controller: emailController,
+              controller: _emailController,
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.emailAddress,
               focusNode: _emailFocusNode,
@@ -126,7 +107,7 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               ),
             ),
             TextField(
-              controller: sexController,
+              controller: _sexController,
               textInputAction: TextInputAction.next,
               focusNode: _sexFocusNode,
               onSubmitted: (_) {
@@ -140,7 +121,7 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               ),
             ),
             TextField(
-              controller: ageController,
+              controller: _ageController,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.number,
               focusNode: _ageFocusNode,
@@ -178,11 +159,11 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
                 ),
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: nameController.text.isEmpty ||
-                        ageController.text.isEmpty ||
-                        emailController.text.isEmpty ||
-                        sexController.text.isEmpty ||
-                        occupationController.text.isEmpty
+                child: _nameController.text.isEmpty ||
+                        _ageController.text.isEmpty ||
+                        _emailController.text.isEmpty ||
+                        _sexController.text.isEmpty ||
+                        _occupationController.text.isEmpty
                     ? null
                     : DisplayItem(
                         name: _name,
