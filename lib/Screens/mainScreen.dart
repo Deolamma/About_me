@@ -17,6 +17,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile Me'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
         actions: [
           AspectRatio(
             aspectRatio: 5 / 3,

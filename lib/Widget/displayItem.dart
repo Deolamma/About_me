@@ -32,6 +32,9 @@ class _DisplayItemState extends State<DisplayItem> {
     return Column(
       children: [
         Container(
+          margin: EdgeInsets.symmetric(
+            vertical: kDefaultPadding - 10,
+          ),
           decoration: BoxDecoration(
               border: Border.all(color: kPrimaryColor),
               borderRadius: BorderRadius.circular(15)),
@@ -60,6 +63,7 @@ class _DisplayItemState extends State<DisplayItem> {
                 ),
                 Text(
                   widget.occupation!,
+                  overflow: TextOverflow.ellipsis,
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                       color: kTextColor,
@@ -105,7 +109,6 @@ class _DisplayItemState extends State<DisplayItem> {
         if (_isExpanded)
           Container(
             margin: EdgeInsets.all(kDefaultPadding - 15),
-            padding: EdgeInsets.all(kDefaultPadding - 15),
             child: Column(
               children: [
                 AspectRatio(
@@ -142,7 +145,7 @@ class _DisplayItemState extends State<DisplayItem> {
                       style: GoogleFonts.poppins(color: kTextColor),
                     ),
                     TextSpan(
-                      text: 'email:',
+                      text: 'Email:',
                       style: GoogleFonts.roboto(
                           color: kPrimaryColor, fontSize: 20),
                     ),
