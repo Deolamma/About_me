@@ -10,11 +10,11 @@ class InputDisplayWidget extends StatefulWidget {
 }
 
 class _InputDisplayWidgetState extends State<InputDisplayWidget> {
-  var _name = '';
-  var _sex = '';
-  var _email = '';
+  var _name;
+  var _sex;
+  var _email;
   var _age;
-  var _occupation = '';
+  var _occupation;
 
   var _nameController = TextEditingController();
   var _sexController = TextEditingController();
@@ -42,15 +42,13 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
     super.dispose();
   }
 
-  
-
   void _submitInput() {
-    _name = _nameController.text;
-    _sex = _sexController.text;
-    _age = int.parse(_ageController.text);
-    _occupation = _occupationController.text;
-    _email = _emailController.text;
     setState(() {});
+    _nameController.clear();
+    _ageController.clear();
+    _sexController.clear();
+    _occupationController.clear();
+    _emailController.clear();
   }
 
   @override
@@ -70,6 +68,9 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               onSubmitted: (_) {
                 currentFocus.requestFocus(_occupationFocusNode);
               },
+              onChanged: (value) {
+                _name = _nameController.text;
+              },
               decoration: InputDecoration(
                 hintText: 'Fullname',
                 enabledBorder: UnderlineInputBorder(
@@ -83,6 +84,9 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               focusNode: _occupationFocusNode,
               onSubmitted: (_) {
                 currentFocus.requestFocus(_emailFocusNode);
+              },
+              onChanged: (value) {
+                _occupation = _occupationController.text;
               },
               decoration: InputDecoration(
                 hintText: 'What do you do?',
@@ -99,6 +103,9 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               onSubmitted: (_) {
                 currentFocus.requestFocus(_sexFocusNode);
               },
+              onChanged: (value) {
+                _email = _emailController.text;
+              },
               decoration: InputDecoration(
                 hintText: 'Email address',
                 enabledBorder: UnderlineInputBorder(
@@ -113,6 +120,9 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               onSubmitted: (_) {
                 currentFocus.requestFocus(_ageFocusNode);
               },
+              onChanged: (value) {
+                _sex = _sexController.text;
+              },
               decoration: InputDecoration(
                 hintText: 'Sex',
                 enabledBorder: UnderlineInputBorder(
@@ -125,6 +135,9 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.number,
               focusNode: _ageFocusNode,
+              onChanged: (value) {
+                _age = int.parse(_ageController.text);
+              },
               onSubmitted: (_) => _submitInput(),
               decoration: InputDecoration(
                 hintText: 'Age',
@@ -159,11 +172,11 @@ class _InputDisplayWidgetState extends State<InputDisplayWidget> {
                 ),
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                child: _nameController.text.isEmpty ||
-                        _ageController.text.isEmpty ||
-                        _emailController.text.isEmpty ||
-                        _sexController.text.isEmpty ||
-                        _occupationController.text.isEmpty
+                child: _name == null ||
+                        _age == null ||
+                        _sex == null ||
+                        _occupation == null ||
+                        _email == null
                     ? null
                     : DisplayItem(
                         name: _name,
