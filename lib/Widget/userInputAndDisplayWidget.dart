@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:task_2/Widget/displayItem.dart';
+import '../Widget/displayItem.dart';
 
 import '../constants.dart';
 
