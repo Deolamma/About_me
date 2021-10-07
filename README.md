@@ -2,8 +2,9 @@
 #Video of work done
 
 
+![portfolio](https://user-images.githubusercontent.com/59015618/136328977-2f67dd36-67cd-4f78-a45d-1c72962b9737.gif)
 
-https://user-images.githubusercontent.com/59015618/130323390-8ed14cb0-1524-4cb1-8013-87ee2550068c.mp4
+
 
 
 
